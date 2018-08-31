@@ -1,2 +1,2 @@
-const getMin = require('./getMin');
-module.exports = getMin;
+const getMinIndex = require('./getMinIndex');
+module.exports = getMinIndex;
