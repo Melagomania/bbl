@@ -1,2 +1,1 @@
-const isNaN = require('./isNaN');
-module.exports = isNaN;
+module.exports = require('./isNaN');

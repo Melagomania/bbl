@@ -1,2 +1,1 @@
-const objectLength = require('./objectLength');
-module.exports = objectLength;
+module.exports = require('./objectLength');

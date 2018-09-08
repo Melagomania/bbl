@@ -1,2 +1,1 @@
-const getMinIndex = require('./getMinIndex');
-module.exports = getMinIndex;
+module.exports = require('./getMinIndex');

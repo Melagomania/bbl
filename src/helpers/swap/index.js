@@ -1,2 +1,1 @@
-const swap = require('./swap');
-module.exports = swap;
+module.exports = require('./swap');

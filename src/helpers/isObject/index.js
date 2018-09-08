@@ -1,2 +1,1 @@
-const isObject = require('./isObject');
-module.exports = isObject;
+module.exports = require('./isObject');

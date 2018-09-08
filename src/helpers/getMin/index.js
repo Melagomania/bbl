@@ -1,2 +1,1 @@
-const getMin = require('./getMin');
-module.exports = getMin;
+module.exports = require('./getMin');

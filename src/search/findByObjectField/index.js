@@ -1,2 +1,1 @@
-const findByObjectField = require('./findByObjectField');
-module.exports = findByObjectField;
+module.exports = require('./findByObjectField');
