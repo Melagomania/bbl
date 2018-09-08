@@ -17,3 +17,7 @@ test('throws when gets no arguments', () => {
     isObject() 
   }).toThrow('One argument expected');
 });
+
+test('handles NaN correctly', () => {
+  expect(isObject(NaN)).toBe(false);
+});
