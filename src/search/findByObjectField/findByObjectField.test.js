@@ -13,7 +13,7 @@ test("finds correct object (index)", () => {
   expect(found).toBe(2);
 });
 
-test("returns -1 if nothing found", () => {
+test("returns -1 if nothing was found", () => {
   const array = [
     { name: "max", age: "14" },
     { name: "john", age: "21" },
@@ -32,37 +32,43 @@ test("returns -1 if the array is empty", () => {
   expect(found).toBe(-1);
 });
 
-test('throws if gets not array passed', () => {
-  const obj = {
-    1: { name: "max", age: "14" },
-    2: { name: "john", age: "21" }
-  };
+describe('findByObjectField throws', () => {
+  test('throws if not all arguments are passed', () => {
+    const error = 'Expected 2 arguments';
+    expect(() => {
+      findByObjectField({ surname: "sykes" });
+    }).toThrow(error);
+  });
 
-  const error = 'The first argument should be an array';
-  expect(() => {
-    findByObjectField(obj, { surname: "sykes" });
-  }).toThrow(error);
-});
+  test('if the first argument is not an array', () => {
+    const error = 'The first argument should be an array';
+    expect(() => {
+      findByObjectField({}, { surname: "sykes" });
+    }).toThrow(error);
+  });
+  
+  test('if the second argument is not an object', () => {
+    const error = 'The second argument should have the following structure: {key: value}';
+    expect(() => {
+      findByObjectField([], 1);
+    }).toThrow(error);
+  });
 
-test('throws if options argument has incorrect structure', () => {
-  const array = [
-    { name: "max", age: "14" },
-    { name: "john", age: "21" }
-  ];
+  test('if the second argument has more then 1 key-value pair', () => {
+    const error = 'The second argument should have the following structure: {key: value} (1 key-value pair)';
+    const array = [
+      { name: "max", age: "14" },
+      { name: "john", age: "21" }
+    ];
+    expect(() => {
+      findByObjectField(array, { surname: "sykes", age: "15" });
+    }).toThrow(error);
+  });
 
-  const error = 'Options argument should have the following structure: {key: value}';
-  expect(() => {
-    findByObjectField(array, 1);
-  }).toThrow(error);
-
-  expect(() => {
-    findByObjectField(array, { surname: "sykes", age: "15" });
-  }).toThrow(error);
-});
-
-test('throws if not all arguments passed', () => {
-  const error = 'Expected 2 arguments';
-  expect(() => {
-    findByObjectField({ surname: "sykes" });
-  }).toThrow(error);
+  test('if empty second argument is passed', () => {
+    const error = 'The second argument should have the following structure: {key: value} (1 key-value pair)';
+    expect(() => {
+      findByObjectField([], {});
+    }).toThrow(error);
+  });
 });
