@@ -1,17 +1,17 @@
 const isNaN = require('./isNaN');
 
-describe("when gets a number passed", () => {
-  test("returns true when gets NaN passed", () => {
+describe("when gets a number type value passed, isNaN", () => {
+  test("returns true if the value is NaN", () => {
     expect(isNaN(NaN)).toBe(true);
   });
 
-  test("returns false when gets any valid number value", () => {
+  test("returns false if the value is any valid number", () => {
     expect(isNaN(1)).toBe(false);
   });
 });
 
-describe("when gets not number value", () => {
-  test("returns false with string value", () => {
+describe("when gets not a number type value, isNaN", () => {
+  test("returns false with a string value", () => {
     expect(isNaN("")).toBe(false);
     expect(isNaN("1")).toBe(false);
     expect(isNaN("A")).toBe(false);
@@ -34,7 +34,7 @@ describe("when gets not number value", () => {
   });
 });
 
-describe('throws', () => {
+describe('isNaN throws', () => {
   test('when gets no arguments', () => {
     const errorMessage = 'Expected 1 argument';
     expect(() => isNaN()).toThrow(errorMessage);
