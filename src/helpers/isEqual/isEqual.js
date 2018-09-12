@@ -1,10 +1,9 @@
 const isObject = require("../isObject");
 const isNaN = require('../isNaN');
 
-function isEqual(obj1, obj2) {
-  if (obj1 === obj2) {
-    throw new Error("Arguments should not contain link to the same object");
-  }
+function isEqual(objA, objB) {
+  const error = checkErrors(arguments);
+  if (error) throw error;
   let equal = true;
   function check(obj1, obj2) {
     if (equal === false) return;
@@ -39,9 +38,19 @@ function isEqual(obj1, obj2) {
       }
     }
   }
-  check(obj1, obj2);
-  check(obj2, obj1);
+  check(objA, objB);
+  check(objB, objA);
   return equal;
+}
+
+function checkErrors(args) {
+  if (args.length < 2) {
+    return new Error("2 arguments expected");    
+  }
+  if (args[0] === args[1]) {
+    return new Error("Arguments should not contain link to the same object");
+  }
+  return false;
 }
 
 function areArraysOrObjects(a, b) {

@@ -204,13 +204,17 @@ describe('when objects contain functions, isEqual', () => {
   });
 });
 
-describe("should throw", () => {
+describe("isEqual should throw", () => {
+  test('if less then 2 arguments are passed', () => {
+    expect(() => isEqual({}))
+      .toThrow("2 arguments expected");
+  });
+
   test("if both arguments contain a link to the same object", () => {
     const obj = { id: "123" };
     const savedLink = obj;
 
-    expect(() => isEqual(obj, savedLink)).toThrow(
-      "Arguments should not contain link to the same object"
-    );
+    expect(() => isEqual(obj, savedLink))
+      .toThrow("Arguments should not contain link to the same object");
   });
 });
