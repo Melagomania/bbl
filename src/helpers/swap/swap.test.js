@@ -31,3 +31,28 @@ test('swap returns a new array', () => {
 
   expect(newArr).not.toBe(arr);
 });
+
+describe('swap throws', () => {
+  test('when gets not enough arguments passed', () => {
+    const array = [1, 3];
+    expect(() => swap(array, 0))
+      .toThrow('Expected 3 arguments');
+  });
+
+  test('when the first argument is not an array', () => {
+    const object = {};
+    expect(() => swap(object, 1, 2))
+      .toThrow('The first argument should be an array');
+  });
+
+  test('when last then 2 are not positive integers', () => {
+    expect(() => swap([], -1, 1))
+      .toThrow('Last 2 arguments should be positive integers');
+
+    expect(() => swap([], 1.5, 1))
+      .toThrow('Last 2 arguments should be positive integers');
+
+    expect(() => swap([], '1', 1))
+      .toThrow('Last 2 arguments should be positive integers');
+  });
+});
